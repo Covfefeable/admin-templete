@@ -1,0 +1,76 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1890ff 0%, #722ed1 100%);
+    position: relative;
+    overflow: hidden;
+    animation: gradientBG 15s ease infinite;
+
+    @keyframes gradientBG {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 6s infinite;
+    }
+
+    &::before {
+        top: -100px;
+        right: -100px;
+    }
+
+    &::after {
+        bottom: -100px;
+        left: -100px;
+        animation-delay: -3s;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+
+        50% {
+            transform: translate(30px, 30px) rotate(180deg);
+        }
+
+        100% {
+            transform: translate(0, 0) rotate(360deg);
+        }
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 24px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
