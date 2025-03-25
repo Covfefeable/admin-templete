@@ -1,0 +1,18 @@
+{
+  "menu": [
+    {
+      "key": "home",
+      "label": "主页",
+      "children": [
+        {
+          "key": "other",
+          "label": "二级菜单"
+        }
+      ]
+    },
+    {
+      "key": "sample",
+      "label": "一级菜单"
+    }
+  ]
+}

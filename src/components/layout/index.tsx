@@ -3,15 +3,16 @@ import Sider from "ant-design-vue/es/layout/Sider";
 import { computed, defineComponent, onBeforeMount } from "vue";
 import Logo from "../logo";
 import { Content, Footer, Header } from "ant-design-vue/es/layout/layout";
-import { menu } from "../../config/menu";
 import { useRouter } from "vue-router";
 import type { SelectInfo } from "ant-design-vue/es/menu/src/interface";
+import { useMenu } from "../../config/menu";
 
 export default defineComponent({
   setup() {
     const router = useRouter();
 
     const curretPath = computed(() => router.currentRoute.value.path);
+    const menu = useMenu().get();
     const onSelect = (item: SelectInfo) => {
       router.push(item.key as string);
     };
@@ -23,10 +24,10 @@ export default defineComponent({
     onBeforeMount(() => {
       goHome();
     });
-    return { curretPath, onSelect, goHome };
+    return { curretPath, menu, onSelect, goHome };
   },
   render() {
-    const { curretPath, onSelect, goHome } = this;
+    const { curretPath, menu, onSelect, goHome } = this;
     const slots = this.$slots;
     return (
       <Layout hasSider class="glb-layout">
