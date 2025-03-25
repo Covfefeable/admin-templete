@@ -1,18 +1,23 @@
 import { createApp } from "vue";
-import "./style.less";
+import "./main.less";
 import { routes } from "vue-router/auto-routes";
 import App from "./app";
-import { createPinia } from 'pinia'
+import { createPinia } from "pinia";
 import { createRouter, createWebHashHistory } from "vue-router";
+import { useMenu } from "./config/menu";
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   // Add your authentication logic here
-  console.log(to, from);
-  next();
+  if (to.path === "/") {
+    next(useMenu().first());
+  } else {
+    next();
+  }
+
 });
 
 createApp(App).use(router).use(createPinia()).mount("#app");
