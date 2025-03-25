@@ -1,13 +1,18 @@
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import Layout from "./components/layout";
-import { RouterView } from "vue-router";
+import { RouterView, useRoute } from "vue-router";
 
 export default defineComponent({
   setup() {
-    return {};
+    const route = useRoute();
+    const isLoginPage = computed(() => route.path === "/login");
+    return { isLoginPage };
   },
   render() {
-    return (
+    const { isLoginPage } = this;
+    return isLoginPage ? (
+      <RouterView />
+    ) : (
       <Layout>
         <RouterView />
       </Layout>

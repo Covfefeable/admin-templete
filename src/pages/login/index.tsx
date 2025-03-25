@@ -1,8 +1,9 @@
 import { defineComponent } from "vue";
+import './index.less'
 
 export default defineComponent({
   setup() {},
   render() {
-    return <div>hello from login</div>;
+    return <div>login</div>;
   },
 });
