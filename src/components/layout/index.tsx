@@ -7,6 +7,7 @@ import { useRouter } from "vue-router";
 import type { SelectInfo } from "ant-design-vue/es/menu/src/interface";
 import { useMenu } from "../../config/menu";
 import User from "../user";
+import Breadcrumb from "../breadcrumb";
 
 export default defineComponent({
   setup() {
@@ -47,7 +48,8 @@ export default defineComponent({
         </Sider>
         <Layout>
           <Header class="header">
-            <Row justify="end" align={"middle"}>
+            <Row justify="space-between" align={"middle"}>
+              <Breadcrumb />
               <User />
             </Row>
           </Header>

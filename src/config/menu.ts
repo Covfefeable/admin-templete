@@ -1,5 +1,5 @@
 import config from "./config.json";
-interface MenuItem {
+export interface MenuItem {
   key: string;
   label: string;
   meta?: Record<string, any>;
@@ -62,6 +62,9 @@ const firstMenu = () => {
 };
 
 export const useMenu = () => {
+  // 获取原始菜单
+  const getOrigin = () => config.menu;
+
   // 获取完整菜单
   const get = () => getMenu();
 
@@ -72,6 +75,7 @@ export const useMenu = () => {
   const first = () => firstMenu();
 
   return {
+    getOrigin,
     get,
     current,
     first,
