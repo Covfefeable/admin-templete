@@ -15,7 +15,7 @@ export default defineComponent({
       username: "",
       password: "",
     });
-    
+
     const registerForm = reactive({
       username: "",
       password: "",
@@ -23,44 +23,51 @@ export default defineComponent({
     });
 
     const handleLogin = async () => {
-      try {
-        const userInfo = { username: loginForm.username };
-        userStore.setUser(userInfo);
-        message.success("登录成功");
-        router.push("/");
-      } catch (error) {
-        message.error("登录失败");
+      if (!loginForm.username || !loginForm.password) {
+        message.error("请输入用户名和密码");
+        return;
       }
+      const userInfo = { username: loginForm.username };
+      userStore.setUser(userInfo);
+      message.success("登录成功");
+      router.push("/");
     };
 
     const handleRegister = async () => {
-      try {
-        if (registerForm.password !== registerForm.confirmPassword) {
-          message.error("两次输入的密码不一致");
-          return;
-        }
-        message.success("注册成功");
-        isLogin.value = true;
-      } catch (error) {
-        message.error("注册失败");
+      if (!loginForm.username || !loginForm.password) {
+        message.error("请输入用户名和密码");
+        return;
       }
+      if (registerForm.password !== registerForm.confirmPassword) {
+        message.error("两次输入的密码不一致");
+        return;
+      }
+      message.success("注册成功");
+      isLogin.value = true;
     };
 
     const toggleForm = () => {
       isLogin.value = !isLogin.value;
     };
 
-    return { 
+    return {
       isLogin,
       loginForm,
       registerForm,
       handleLogin,
       handleRegister,
-      toggleForm
+      toggleForm,
     };
   },
   render() {
-    const { isLogin, loginForm, registerForm, handleLogin, handleRegister, toggleForm } = this;
+    const {
+      isLogin,
+      loginForm,
+      registerForm,
+      handleLogin,
+      handleRegister,
+      toggleForm,
+    } = this;
     return (
       <div class="login-container">
         <Card class="login-card">
